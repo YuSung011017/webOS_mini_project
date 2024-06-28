@@ -1,0 +1,9 @@
+{
+  "id": "com.automotive.media.service",
+  "description": "Multimedia Service",
+  "services": [
+    {
+      "name": "com.automotive.media.service"
+    }
+  ]
+}

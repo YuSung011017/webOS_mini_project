@@ -1,0 +1,194 @@
+<!--
+Copyright (c) 2020-2024 LG Electronics Inc.
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Media Web App</title>
+<!-- tailwind CSS -->
+<link href="./dist/styles.css" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="p-5 text-white bg-[#1a1a2e] p-[100px] h-dvh">
+        <div class="flex mx-auto flex-wrap justify-center mb-20">
+            <h1 class="text-[50px] text-white font-bold" id="txt_msg">미디어 플레이어</h1>
+        </div>
+        <div id="app-mirror-container" class="flex flex-wrap justify-center items-center bg-[#16213e] border-[#0f3460] border-[2px] rounded p-[20px] mb-5">
+            <button id="btn-start-mirror" class="bg-[#5A8DEE] font-bold text-white p-2 rounded-lg px-5 w-1/7">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16" style="display:inline-block">
+                    <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
+                  </svg>
+                Start Mirroring
+            </button>        
+            <button id="btn-stop-mirror" class="bg-[#5A8DEE] font-bold text-white p-2 rounded-lg px-5 w-1/7 ml-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-slash-circle" viewBox="0 0 16 16" style="display:inline-block">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708"/>
+                  </svg>
+                Stop Mirroring
+            </button>     
+            <button id="btn-to-main" class="bg-[#5A8DEE] font-bold text-white p-2 rounded-lg px-5 w-1/7 ml-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16" style="display:inline-block">
+                    <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+                  </svg>               
+                Back to Main                
+            </button>
+            <button id="btn-to-game" class="bg-[#5A8DEE] font-bold text-white p-2 rounded-lg px-5 w-1/7 ml-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-controller" viewBox="0 0 16 16" style="display:inline-block">
+                    <path d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1z"/>
+                    <path d="M3.051 3.26a.5.5 0 0 1 .354-.613l1.932-.518a.5.5 0 0 1 .62.39c.655-.079 1.35-.117 2.043-.117.72 0 1.443.041 2.12.126a.5.5 0 0 1 .622-.399l1.932.518a.5.5 0 0 1 .306.729q.211.136.373.297c.408.408.78 1.05 1.095 1.772.32.733.599 1.591.805 2.466s.34 1.78.364 2.606c.024.816-.059 1.602-.328 2.21a1.42 1.42 0 0 1-1.445.83c-.636-.067-1.115-.394-1.513-.773-.245-.232-.496-.526-.739-.808-.126-.148-.25-.292-.368-.423-.728-.804-1.597-1.527-3.224-1.527s-2.496.723-3.224 1.527c-.119.131-.242.275-.368.423-.243.282-.494.575-.739.808-.398.38-.877.706-1.513.773a1.42 1.42 0 0 1-1.445-.83c-.27-.608-.352-1.395-.329-2.21.024-.826.16-1.73.365-2.606.206-.875.486-1.733.805-2.466.315-.722.687-1.364 1.094-1.772a2.3 2.3 0 0 1 .433-.335l-.028-.079zm2.036.412c-.877.185-1.469.443-1.733.708-.276.276-.587.783-.885 1.465a14 14 0 0 0-.748 2.295 12.4 12.4 0 0 0-.339 2.406c-.022.755.062 1.368.243 1.776a.42.42 0 0 0 .426.24c.327-.034.61-.199.929-.502.212-.202.4-.423.615-.674.133-.156.276-.323.44-.504C4.861 9.969 5.978 9.027 8 9.027s3.139.942 3.965 1.855c.164.181.307.348.44.504.214.251.403.472.615.674.318.303.601.468.929.503a.42.42 0 0 0 .426-.241c.18-.408.265-1.02.243-1.776a12.4 12.4 0 0 0-.339-2.406 14 14 0 0 0-.748-2.295c-.298-.682-.61-1.19-.885-1.465-.264-.265-.856-.523-1.733-.708-.85-.179-1.877-.27-2.913-.27s-2.063.091-2.913.27"/>
+                  </svg>
+                Go to Game
+            </button>  
+        </div>
+        <div class="flex flex-wrap">
+            
+            <!-- 미디어 파일 검색 -->
+            <div class="flex flex-wrap flex-col w-1/3 pr-5">
+                <div id="search-container" class="bg-[#16213e] border-[#0f3460] border-[2px] rounded p-[20px] mb-5">
+                    <h2 class="text-[25px] text-center mb-5">Search Media File</h2>
+            
+                    <div id="search-file" class="bg-zinc-600 rounded p-5">
+                        <fieldset>
+                            <label class="label px-5 p-2 font-bold text-2xl">search keyword: </label>
+                            <div class="field flex flex-wrap mt-4">
+                                <button id="media-scan" class="bg-[#5A8DEE] font-bold text-white p-2 rounded-lg px-5" data-target="modal-js-example">
+                                    <svg id="Layer_1" class="svg-inline--fa fa-w-14" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.61 122.88" stroke="#ffffff">
+                                        <title>scan</title>
+                                        <path d="M23.38,0h13V11.15h-13a12.22,12.22,0,0,0-8.64,3.57l0,0a12.22,12.22,0,0,0-3.57,8.64V39.32H0V23.38A23.32,23.32,0,0,1,6.86,6.89l0,0A23.31,23.31,0,0,1,23.38,0ZM3.25,54.91H119.36a3.29,3.29,0,0,1,3.25,3.27V64.7A3.29,3.29,0,0,1,119.36,68H3.25A3.28,3.28,0,0,1,0,64.7V58.18a3.27,3.27,0,0,1,3.25-3.27ZM90.57,0h8.66a23.28,23.28,0,0,1,16.49,6.86v0a23.32,23.32,0,0,1,6.87,16.52V39.32H111.46V23.38a12.2,12.2,0,0,0-3.6-8.63v0a12.21,12.21,0,0,0-8.64-3.58H90.57V0Zm32,81.85V99.5a23.46,23.46,0,0,1-23.38,23.38H90.57V111.73h8.66A12.29,12.29,0,0,0,111.46,99.5V81.85Zm-86.23,41h-13A23.32,23.32,0,0,1,6.86,116l-.32-.35A23.28,23.28,0,0,1,0,99.5V81.85H11.15V99.5a12.25,12.25,0,0,0,3.35,8.41l.25.22a12.2,12.2,0,0,0,8.63,3.6h13v11.15Z"fill="#ffffff"/></svg>
+                                        Media Scan
+                                </button>
+                            </div>
+                        </fieldset>
+                    </div>
+                    
+                </div>
+                <div id="result-container" class="bg-[#16213e] border-[#0f3460] border-[2px] rounded p-[20px]">
+                    <h2 id="scanned-list" class="text-[25px] text-center">Media List</h2>
+    
+                </div>            
+            </div>
+    
+            <!-- 미디어 파일 실행 -->
+            <div class="flex flex-wrap flex-col w-1/3 pr-5">
+                <div class="bg-[#16213e] border-[#0f3460] border-[2px] rounded p-[20px] mb-5">
+                    <h2 class="text-[25px] text-center mb-5">Play Audio</h2>
+                    <div class="bg-zinc-600 rounded p-5">
+                        <h2 class="text-2xl p-2">Media File Control</h2>                        
+
+                        <div class="flex flex-wrap mt-2">
+                            <button id="audio-play-btn" class="flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg w-1/4 h-10">
+                                <span class="mr-4">
+                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                </span>
+                                <p>Play</p>
+                            </button>
+                            <button id="audio-pause-btn" class="flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg hidden w-1/4 h-10">
+                                <span class="mr-4">
+                                    <i class="fa fa-pause" aria-hidden="true"></i>
+                                </span>
+                                <p>pause</p>
+                            </button>
+                            <button id="audio-stop-btn" class="disabled:opacity-50 flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg w-1/4 h-10" disabled>
+                                <span class="mr-4">
+                                    <i class="fa fa-stop" aria-hidden="true"></i>
+                                </span>
+                                <p>Stop</p>
+                            </button>
+                        </div>    
+                        
+                        <div id="progress-container" class="w-full bg-gray-400 mt-4 h-1.5">
+                            <div id="progress" class="bg-green-500 h-1.5" style="width: 0%">
+                                
+                            </div>
+                        </div>                    
+                    </div>                    
+                </div>
+                <!-- 오디오 서비스 플레이 -->
+                <div class="bg-[#16213e] border-[#0f3460] border-[2px] rounded p-[20px] mb-5">
+                    <h2 class="text-[25px] text-center mb-5">Play Audio with Service</h2>
+                    <div class="bg-zinc-600 rounded p-5">
+                        <h2 class="text-2xl p-2">Media File Control with Service</h2>                        
+                        <div class="flex flex-wrap mt-2">
+                            <button id="btn-play-service" class="flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg w-1/4 h-10">
+                                <span class="mr-4 flex flex-wrap justify-center items-center ">
+                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                </span>
+                                <p>Play</p>
+                            </button>
+                            <button id="btn-stop-service" class="disabled:opacity-50 flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg w-1/4 h-10">
+                                <span class="mr-4 flex flex-wrap justify-center items-center ">
+                                    <i class="fa fa-stop" aria-hidden="true"></i>
+                                </span>
+                                <p>Stop</p>
+                            </button>
+                            <button id="btn-pause-service" class="flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg w-1/4 h-10 hidden">                        
+                                <span class="mr-4 flex flex-wrap justify-center items-center ">
+                                    <i class="fa fa-pause" aria-hidden="true"></i>
+                                </span>
+                                <p>Pause</p>
+                            </button>  
+                        </div>
+                                              
+                        <div id="progress-container" class="w-full bg-gray-400 mt-4 h-1.5">
+                            <div id="progress" class="bg-green-500 h-1.5" style="width: 0%">
+                                
+                            </div>
+                        </div>                    
+                    </div>                    
+                </div>
+            </div>
+
+            <!-- 비디오 플레이 -->
+            <div class="flex flex-wrap flex-col w-1/3">
+                <div class="bg-[#16213e] border-[#0f3460] border-[2px] rounded p-[20px] mb-5">
+                    <h2 class="text-[25px] text-center mb-5">Play Video</h2>
+                    <div class="bg-zinc-600 rounded p-5">
+                        <h2 class="text-2xl p-2">Video File</h2>
+                        <video id="myVideo" controls>
+                            <source src="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_30fps_normal.mp4" type="video/mp4">
+                            Your browser does not support HTML video.
+                        </video>
+                        <div class="flex flex-wrap mt-2">
+                            <button id="btn-play-video" class="flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg w-1/4 h-10">
+                                <span class="mr-4">
+                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                </span>
+                                <p>Play</p>
+                            </button>
+                            <button id="btn-pause-video" class="flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg hidden w-1/4 h-10">
+                                <span class="mr-4">
+                                    <i class="fa fa-pause" aria-hidden="true"></i>
+                                </span>
+                                <p>pause</p>
+                            </button>
+                            <button id="btn-stop-video" class="disabled:opacity-50 flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg w-1/4 h-10" disabled>
+                                <span class="mr-4">
+                                    <i class="fa fa-stop
+                                    " aria-hidden="true"></i>
+                                </span>
+                                <p>Stop</p>
+                            </button>
+                            <button id="btn-full-video" class="flex flex-wrap justify-center items-center bg-[#5a8dee] font-bold text-white mr-4 rounded-lg w-1/4 h-10">
+                                <span class="mr-4">
+                                    <i class="fa fa-expand" aria-hidden="true"></i>
+                                </span>
+                                <p>Full</p>
+                            </button>
+                        </div>                 
+                    </div>                    
+                </div>                
+            </div>
+        </div>        
+    </div>  
+
+    <script src="./js/media-list.js"></script>
+    <script src="./js/audio-player.js"></script>
+    <script src="./js/video-player.js"></script>
+    <script src="./js/menu.js"></script>
+</body>
+</html>

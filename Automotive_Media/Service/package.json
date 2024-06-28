@@ -1,0 +1,14 @@
+{
+  "name": "com.automotive.media.service",
+  "version": "1.0.0",
+  "description": "Multimedia Service",
+  "main": "service_main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "play-sound": "^1.1.6"
+  }
+}

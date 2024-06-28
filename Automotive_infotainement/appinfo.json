@@ -1,0 +1,17 @@
+{
+  "id": "com.automotive.infotainment",
+  "version": "1.0.0",
+  "vendor": "My Company",
+  "type": "web",
+  "main": "index.html",
+  "title": "Automotive Infotainment",
+  "icon": "icon.png",
+  "requiredPermissions": [
+    "time.query",
+    "activity.operation",
+    "application.launcher",
+    "bluetooth.management",
+    "bluetooth.operation",
+    "bluetooth.query"
+  ]
+}

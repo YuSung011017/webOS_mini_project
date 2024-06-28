@@ -1,0 +1,22 @@
+{
+  "id": "com.automotive.media",
+  "version": "1.0.0",
+  "vendor": "My Company",
+  "type": "web",
+  "main": "index.html",
+  "title": "MediaPlay",
+  "icon": "icon.png",
+  "requiredPermissions": [
+    "time.query",
+    "activity.operation",
+    "search.operation",
+    "mediadb",
+    "mediaindexer.operation",
+    "media.operation",
+    "notification.operation",
+    "surfacemanager.operation",
+    "application.launcher",
+    "application.operation",
+    "surfacemanager.query"
+  ]
+}
